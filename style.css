@@ -1,64 +1,38 @@
-/* 程式美化 */
-/* 網頁背景設定 */
 body {
-  background:  #1b7fd3;
+  background: radial-gradient(circle at top left, #222, #000);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* 導覽列樣式 */
-.navbar {
-  background: #00a3e1;
+/* Card styling */
+.card {
+  border-radius: 10px;
+  backdrop-filter: blur(3px);
 }
 
-.navbar a {
-  color: white !important;
-  font-weight: 500;
+/* Glow text effect */
+.text-warning {
+  text-shadow: 0 0 10px rgba(255, 196, 0, 0.7);
 }
 
-/* 橫幅圖片設定 */
-header img {
-  width: 100%;
-  border-radius: 6px;
+/* Buttons */
+.btn-warning {
+  background-color: #f7a600;
+  border: none;
+  color: #000;
+  font-weight: bold;
+}
+.btn-warning:hover {
+  background-color: #ffcc33;
+  color: #000;
 }
 
-/* 小標題樣式 */
-.section-header {
-  font-weight: 600;
-  color: #00a3e1;
-  margin-bottom: 1rem;
+/* List hover */
+.list-group-item:hover {
+  background-color: rgba(255, 200, 0, 0.1);
+  cursor: pointer;
 }
 
-/* 主要內容框設定 */
-.box {
-  background: white;
-  padding: 20px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
-
-/* 淡藍色背景框 */
-.blue-box {
-  background: #e5f7ff;
-  border-radius: 6px;
-  padding: 20px;
-}
-
-/* 藍色連結樣式 */
-.link-blue {
-  color: #00a3e1;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.link-blue:hover {
-  text-decoration: underline;
-}
-
-/* 頁尾樣式 */
-.footer {
-  background: #00a3e1;
-  color: white;
-  padding: 20px 0;
-  text-align: center;
-  font-size: 0.9rem;
+/* Footer */
+footer {
+  background: linear-gradient(to right, #111, #000);
 }
