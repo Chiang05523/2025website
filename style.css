@@ -1,38 +1,64 @@
+/* ===== 全站基本設定 ===== */
 body {
-  background: radial-gradient(circle at top left, #222, #000);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  font-family: "Noto Serif TC", serif;
+  background-color: #1e1f26;
+  color: #eaeaea;
+  line-height: 1.8;
 }
 
-/* Card styling */
-.card {
-  border-radius: 10px;
-  backdrop-filter: blur(3px);
+/* ===== 導覽列 ===== */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+  background-color: #f0e8dd; /* 與首頁圖一致的淺色導覽 */
+  color: #1e1f26;
 }
 
-/* Glow text effect */
-.text-warning {
-  text-shadow: 0 0 10px rgba(255, 196, 0, 0.7);
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #1e1f26;
+  font-size: 14px;
 }
 
-/* Buttons */
-.btn-warning {
-  background-color: #f7a600;
-  border: none;
-  color: #000;
-  font-weight: bold;
-}
-.btn-warning:hover {
-  background-color: #ffcc33;
-  color: #000;
+/* ===== 通用 section 設定 ===== */
+section {
+  padding: 100px 60px; /* 製造橫列感 */
 }
 
-/* List hover */
-.list-group-item:hover {
-  background-color: rgba(255, 200, 0, 0.1);
-  cursor: pointer;
+/* ===== 各區塊顏色 ===== */
+.hero {
+  background-color: #2a2c36;
+  text-align: center;
 }
 
-/* Footer */
+.problem {
+  background-color: #3a3d4a;
+  text-align: center;
+}
+
+.about {
+  background-color: #2a2c36;
+}
+
+.services {
+  background-color: #3f3a34;
+}
+
+.social {
+  background-color: #2a2c36;
+  text-align: center;
+}
+
+.extras {
+  background-color: #3a3d4a;
+  text-align: center;
+}
+
 footer {
-  background: linear-gradient(to right, #111, #000);
+  background-color: #1a1b20;
+  padding: 60px;
 }
+
