@@ -10,6 +10,42 @@
 
 <body class="page-enter"><!--進場動畫 -->
 
+  <style>
+    /* 1. 視差背景樣式 */
+    .parallax-hero {
+      height: 100vh;
+      background-image: url('picture/a003.png'); /* 使用你原本的 Hero 圖 */
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* 2. 滾動進場基礎樣式 (Reveal) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 表單錯誤提示 */
+    .error-border {
+      border: 2px solid #e74c3c !important;
+    }
+  </style>
+</head>
+
+<body class="page-enter">
+  
+</body>
   <!--導覽列-->
   <nav class="navbar">
   <img src="picture/a002.png" alt="logo" class="logo-img">
