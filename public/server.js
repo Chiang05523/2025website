@@ -1,62 +1,65 @@
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const app = express();
-const PORT = process.env.PORT || 3000;
+var express = require("express");
+var server = express();
+var bodyParser = require("body-parser");
+var fileUpload = require("express-fileupload");
+var DB = require("nedb-promises");
 
-// 中間件設定
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// 資料庫設定
+var ContactDB = DB.create(__dirname + "/Contact.db");
 
-// 設定靜態資源目錄
-app.use(express.static(path.join(__dirname, '/')));
+// 模板引擎與靜態檔案
+server.set("view engine", 'ejs');
+server.set("views", __dirname + "/view");
+server.use(express.static(__dirname + "/Public"));
 
-//  HTML 檔案路徑
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
+// 中間件
+server.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.json());
+server.use(fileUpload({ limits: { fileSize: 2 * 1024 * 1024 } }));
 
-app.get('/about.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'about.html'));
-});
+// --- 路由設定 ---
 
-app.get('/yoyo.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'yoyo.html'));
-});
-
-app.get('/rabbit.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'rabbit.html'));
-});
-
-app.get('/god.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'god.html'));
-});
-
-// 回饋表單提交 
-app.post('/submit-feedback', (req, res) => {
+// 1. 偵測並儲存聯絡資訊
+server.post("/contact", (req, res) => {
     const { name, email, message } = req.body;
 
-    // 偵測郵件格式是否正確
+    // Email 格式偵測 (Regex)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
+
+    // 驗證邏輯
     if (!name || !email || !message) {
-        return res.status(400).send('請填寫完整資訊');
+        return res.render("msg", { message: "❌ 送出失敗：請填寫所有必要欄位。" });
     }
 
     if (!emailRegex.test(email)) {
-        return res.status(400).send('Email 格式錯誤');
+        return res.render("msg", { message: "❌ 送出失敗：Email 格式不正確。" });
     }
 
-    // 資料寫入資料庫 
-    console.log(`收到來自 ${name} 的回饋！`);
-    console.log(`Email: ${email}`);
-    console.log(`內容: ${message}`);
-
-    // 回傳成功訊息給前端
-    res.send(`<h1>送出成功！</h1><p>謝謝 ${name} 的回饋，我們已收到您的訊息。</p><a href="/">返回首頁</a>`);
+    // 存入資料庫
+    ContactDB.insert({
+        name,
+        email,
+        message,
+        timestamp: new Date()
+    }).then(() => {
+        // 處理上傳檔案 (如果有的話)
+        if (req.files && req.files.myFile1) {
+            var upFile = req.files.myFile1;
+            var uploadPath = __dirname + "/Public/upload/" + upFile.name;
+            
+            upFile.mv(uploadPath, function(err) {
+                if (err) return res.render("msg", { message: "資料已存，但檔案上傳出錯。" });
+                res.render("msg", { message: "✅ 感謝回饋！您的訊息與附件已成功送出。" });
+            });
+        } else {
+            res.render("msg", { message: "✅ 感謝回饋！您的訊息已成功存入資料庫。" });
+        }
+    }).catch(err => {
+        res.render("msg", { message: "⚠️ 伺服器錯誤：" + err });
+    });
 });
 
-// 5. 啟動伺服器
-app.listen(8080, () => {
-    console.log(`伺服器已啟動：http://localhost:8080`);
+// 啟動伺服器
+server.listen(80, () => {
+    console.log("Server is running on port 80");
 });
