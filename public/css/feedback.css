@@ -1,0 +1,87 @@
+/*回饋區塊整體*/
+.feedback-section {
+    max-width: 600px;          /* 最大寬度 */
+    margin: 80px ;         /* 置中 + 上下間距 */
+    padding: 40px;
+    background-color: #1e1f26; /* 深色背景 */
+    color: #f2f2f2;
+    border-radius: 12px;
+  }
+  
+  /*標題*/
+  .feedback-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  
+  /*副標 */
+  .feedback-subtitle {
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 32px;
+  }
+  
+  /*表單本體 */
+  .feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 每一欄的距離 */
+  }
+  
+  /*單一欄位*/
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  /* 標籤 */
+  .form-group label {
+    font-size: 14px;
+  }
+  
+  /* 輸入框、文字框 */
+  .form-group input,
+  .form-group textarea {
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 14px;
+    resize: none; /* textarea 不可拉大小 */
+  }
+  
+  /* 輸入框聚焦時 */
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: 2px solid #8fa38a;
+  }
+  
+  /* 送出按鈕*/
+  .btn-submit {
+    margin-top: 12px;
+    padding: 12px;
+    background-color: #8fa38a;
+    color: #1e1f26;
+    border: none;
+    border-radius: 999px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  /* Hover 效果 */
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+  
+  /* ===== 手機版 ===== */
+  @media (max-width: 600px) {
+    .feedback-section {
+      margin: 40px 16px;
+      padding: 24px;
+    }
+  }
+  
