@@ -272,10 +272,10 @@ footer {
 
 input, textarea {
   padding: 12px;
-  border: 1px solid #eaeaea;
+  border: 1px solid #ffffff;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.05);
-  color: white;
+  color: rgb(0, 0, 0);
   transition: 0.3s;
 }
 
