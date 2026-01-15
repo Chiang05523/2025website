@@ -17,7 +17,7 @@ server.set("views", path.join(__dirname, "view"));
 // 重要：設定靜態資源目錄
 // 這樣你的 HTML 才能讀到 css/style.css 或 picture/logo.png
 server.use(express.static(__dirname)); 
-server.use(express.static(path.join(__dirname, "Public")));
+server.use(express.static(path.join(__dirname, "/Public")));
 
 // --- 3. 中間件設定 ---
 server.use(bodyParser.urlencoded({ extended: true }));
