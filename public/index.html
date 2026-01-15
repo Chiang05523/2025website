@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--等於裝置寬度-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <title>江幼婷｜首頁</title>
-
   <link rel="stylesheet" href="css/index.css">
-</head>
-
-<body class="page-enter"><!--進場動畫 -->
 
   <style>
     /* 1. 視差背景樣式 */
     .parallax-hero {
       height: 100vh;
-      background-image: url('picture/a003.png'); /* 使用你原本的 Hero 圖 */
+      background-image: url('picture/a003.png'); 
       background-attachment: fixed;
       background-position: center;
       background-repeat: no-repeat;
@@ -25,193 +21,171 @@
       position: relative;
     }
 
-    /* 2. 滾動進場基礎樣式 (Reveal) */
+    /* 2. 滾動進場 + 透明度控制 (重點修正) */
     .reveal {
-      opacity: 0;
+      opacity: 0.3; /* 沒滑到時半透明 */
       transform: translateY(40px);
-      transition: all 0.8s ease-out;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
+      transition: opacity 1s ease, transform 1s ease, filter 1s ease;
+      filter: grayscale(30%); /* 沒滑到時略微帶灰，增加視覺層次 */
     }
 
-    /* 表單錯誤提示 */
+    /* 3. 滑到時正常呈現 */
+    .reveal.active {
+      opacity: 1; /* 完全不透明 */
+      transform: translateY(0);
+      filter: grayscale(0%);
+    }
+
     .error-border {
       border: 2px solid #e74c3c !important;
+    }
+
+    /* 修正 footer 內回饋區塊文字與背景 */
+    .feedback-section {
+      color: #333; 
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      margin: 40px auto;
+      max-width: 800px;
     }
   </style>
 </head>
 
 <body class="page-enter">
-  
-</body>
-  <!--導覽列-->
+
   <nav class="navbar">
-  <img src="picture/a002.png" alt="logo" class="logo-img">
+    <img src="picture/a002.png" alt="logo" class="logo-img">
+    <div class="nav-links">
+      <a href="index.html">首頁</a>
+      <a href="about.html">個人介紹</a>
+      <a href="yoyo.html">呦呦</a>
+      <a href="rabbit.html">潦草小兔</a>
+      <a href="god.html">G.O.D</a>
+    </div>
+  </nav>
 
-  <div class="nav-links">
-    <a href="index.html">首頁</a>
-    <a href="about.html">個人介紹</a>
-    <a href="yoyo.html">呦呦</a>
-    <a href="rabbit.html">潦草小兔</a>
-    <a href="god.html">G.O.D</a>
-  </div>
-</nav>
-
-
-  <!--Hero-->
- 
-
-  <section id="index" class="hero">
-    <img src="picture/a003.png" alt="Hero Image" class="hero-img">
-
-    <div class="hero-content text-center">
-      <h1 >當文字不夠時，讓圖像說明一切</h1>
+  <section id="index" class="parallax-hero">
+    <div class="hero-content text-center reveal">
+      <h1>當文字不夠時，讓圖像說明一切</h1>
       <p>相較於文字，我更傾向以圖像作為思考與記錄的方式。</p>
       <p>圖像能將抽象的想法轉化為具體畫面，使溝通更直觀。</p>
     </div>
-</section>
-
-
-  <!--簡介-->
-  <section class="problem fade-in">
-    <h2>創作與情緒</h2>
-    <p>
-      創作往往發生在情緒的極端時刻——最快樂，或最悲傷。對我而言，這是將其留存下來的方法。
-    </p>
   </section>
 
-  <!--About-->
-  <section class="about fade-in">
-  <div class="about-content">
+  <section class="problem reveal">
+    <h2>創作與情緒</h2>
+    <p>創作往往發生在情緒的極端時刻——最快樂，或最悲傷。對我而言，這是將其留存下來的方法。</p>
+  </section>
 
-    <div class="profile">
-      <img src="picture/a001_工作區域 1.png"
-           alt="個人頭像"
-           class="profile-img">
-
-      <div class="profile-text">
-        <p class="profile-name">江幼婷</p>
-
-        <p class="profile-desc">
-          我想成為一個圖文創作者，除了記錄日常，
-          我想透過畫面與文字記錄內心狀態。
-        </p>
-
-        <a href="about.html" class="btn-primary">更多資訊</a>
-       
+  <section class="about reveal">
+    <div class="about-content">
+      <div class="profile">
+        <img src="picture/a001_工作區域 1.png" alt="個人頭像" class="profile-img">
+        <div class="profile-text">
+          <p class="profile-name">江幼婷</p>
+          <p class="profile-desc">我想成為一個圖文創作者，除了記錄日常，我想透過畫面與文字記錄內心狀態。</p>
+          <a href="about.html" class="btn-primary">更多資訊</a>
+        </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-  <!--Services-->
   <section class="character-section">
-
-  <!-- 呦呦 -->
-  <div class="card yoyo">
-    <img src="picture/a004.png" class="card-img" alt="角色">
-  <div class="card-text h3"> 
-      <h3>呦呦</h3>
+    <div class="card yoyo reveal">
+      <img src="picture/a004.png" class="card-img" alt="角色">
+      <div class="card-text h3"><h3>呦呦</h3></div>
+      <div class="card-text">
+        <p>我的第一支繪帳，以個人人設繪製圖畫</p>
+        <p>練習不同色彩搭配</p>
+      </div>
+      <a href="yoyo.html" class="btn-primary">更多資訊</a>
     </div>
 
-    <div class="card-text"> 
-      <p>我的第一支繪帳，以個人人設繪製圖畫</p>
-      <p>練習不同色彩搭配</p>
+    <div class="card rabbit reveal">
+      <img src="picture/a005.png" class="card-img" alt="角色">
+      <div class="card-text h3"><h3>潦草小兔</h3></div>
+      <div class="card-text">
+        <p>我的第二支繪帳，以繪畫日常及動態為主</p>
+        <p>練習故事與動態表現</p>
+      </div>
+      <a href="rabbit.html" class="btn-primary">更多資訊</a>
     </div>
-    <a href="yoyo.html" class="btn-primary">更多資訊</a>
-  </div>
+  </section>
 
-  </div>
-
-  <!-- 潦草小兔 -->
-  <div class="card rabbit">
-    <img src="picture/a005.png" class="card-img" alt="角色">
-  <div class="card-text h3"> 
-      <h3>潦草小兔</h3>
-    </div>
-
-    <div class="card-text"> 
-      <p>我的第二支繪帳，以繪畫日常及動態為主</p>
-      <p>練習故事與動態表現</p>
-    </div>
-    <a href="rabbit.html" class="btn-primary">更多資訊</a>
-  </div>
-
-</section>
-
-
-  <!--喜愛的藝術家-->
-  <section class="social fade-in">
+  <section class="social reveal">
     <h2>喜愛的藝術家-梵谷</h2>
     <p>我越來越相信，創造美好的代價是:努力、失望以及毅力。首先是疼痛，然後才是歡樂</p>
   </section>
 
-  <!--社團合作-->
-  <section class="extras fade-in">
+  <section class="extras reveal">
     <h2>社團合作</h2>
     <p>G.O.D熱舞社第25藉舞展-G.O.D DAMN</p>
     <a href="god.html" class="btn-primary">更多資訊</a>
   </section>
 
- 
-
-
-  <!--Footer-->
   <footer>
-  <div class="footer-grid">
-
-    <div class="footer-contact">
-      <p>聯繫方式</p>
-      <p>電話：0958-857-253</p>
-      <p>Email：ella5231123@gmail.com</p>
-      <p>Ig：jiangyt._.5</p>
-      <p>line：ella5231123</p>
+    <div class="footer-grid reveal">
+      <div class="footer-contact">
+        <p>聯繫方式</p>
+        <p>電話：0958-857-253 | Email：ella5231123@gmail.com</p>
+      </div>
+      <div class="footer-logo">
+        <img src="picture/a002.png" alt="logo2" class="logo2-img">
+      </div>
     </div>
 
+    <section class="feedback-section reveal">
+      <h2 class="feedback-title">回饋我們</h2>
+      <form class="feedback-form" action="/contact" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="name">姓名</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">回饋內容</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">送出回饋</button>
+      </form>
+    </section>
+  </footer>
 
-   
-    <div class="footer-logo">
-      <br>
-      <br>
-      <img src="picture/a002.png" alt="logo2" class="logo2-img">
-    </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 滾動偵測：控制透明度變化
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // 滑到時加上 active (變為不透明)
+            entry.target.classList.add("active");
+          } else {
+            // 滑出畫面後移除 active (變回半透明)
+            entry.target.classList.remove("active");
+          }
+        });
+      }, { 
+        threshold: 0.25 // 當區塊進入畫面 25% 時觸發變亮
+      });
 
-     <!--回饋區塊-->
-<section class="feedback-section">
+      reveals.forEach(el => observer.observe(el));
 
-  <!-- 標題 -->
-  <h2 class="feedback-title">回饋我們</h2>
-  <p class="feedback-subtitle">
-    如果你有任何想法、建議或合作邀請，歡迎留下訊息
-  </p>
-  
-  <form class="feedback-form" action="/contact" method="POST" enctype="multipart/form-data">
-
-    <div class="form-group">
-      <label for="name">姓名</label>
-      <input type="text" id="name" name="name" placeholder="請輸入你的姓名" required>
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="example@email.com" required>
-    </div>
-
-    <div class="form-group">
-      <label for="message">回饋內容</label>
-      <textarea id="message" name="message" rows="5" placeholder="請輸入你的回饋內容" required></textarea>
-    </div>
-
-    <button type="submit" class="btn-submit">送出回饋</button>
-  </form>
-</section>
-
-
-
+      // Email 即時格式偵測
+      const emailInput = document.getElementById("email");
+      emailInput.addEventListener("input", function() {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(this.value) && this.value !== "") {
+          this.classList.add("error-border");
+        } else {
+          this.classList.remove("error-border");
+        }
+      });
+    });
+  </script>
 </body>
-</html>
-
 </html>

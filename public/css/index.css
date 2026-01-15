@@ -1,384 +1,46 @@
-/* 全站基本設定*/
+/* =========================================
+   1. 全站基本設定 (Global Settings)
+   ========================================= */
+* {
+  box-sizing: border-box; /* 確保寬高計算包含內距與邊框 */
+}
+
 body {
   margin: 0;
-  font-family: "Noto Serif TC", serif;
+  font-family: "Noto Serif TC", "Arial", serif;
   background-color: #1e1f26;
   color: #eaeaea;
   line-height: 1.8;
+  overflow-x: hidden; /* 防止手機版出現橫向捲軸 */
 }
 
-/* 導覽列*/
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 60px;
-  background-color: #f0e8dd; /* 與首頁圖一致的淺色導覽 */
-  color: #1e1f26;
-}
-
-nav a {
-  margin-left: 20px;
-  text-decoration: none;
-  color: #1e1f26;
-  font-size: 14px;
-}
-
-/* section 設定*/
-section {
-  padding: 100px 60px; /* 製造橫列感 */
-}
-
-/* 各區塊顏色*/
-.hero {
-  background-color: #2a2c36;
-  text-align: center;
-}
-
-.problem {
-  background-color: #3a3d4a;
-  text-align: center;
-}
-
-.about {
-  background-color: #2a2c36;
-}
-
-.services {
-  background-color: #3f3a34;
-}
-
-.social {
-  background-color: #2a2c36;
-  text-align: center;
-}
-
-.extras {
-  background-color: #3a3d4a;
-  text-align: center;
-}
-
-footer {
-  background-color: #1a1b20;
-  padding: 60px;
-}
-
-
-
-/* ===== Hero 文字 ===== */
-.hero {
-  min-height: 100vh;                 /* 滿版高度 */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 20px;
-  /* 疊一層暗色，讓字清楚 */
-  position: relative;
-}
-
-.hero-img{
-  /* 底圖設定 */
-  background-size: cover;            /* 填滿不變形 */
-  background-position: center;
-  background-repeat: no-repeat;
-  
-}
-
-.hero-content{
-  /* 文字顏色 */
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.25); /* 柔霧遮罩 */
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(30, 31, 38, 0.6); /* 深色半透明 */
-  z-index: 0;
-}
-
-.hero h1,
-.hero p {
-  position: relative;
-  z-index: 1;
-}
-hero h1 {
-  font-size: clamp(32px, 5vw, 64px);
-  letter-spacing: 2px;
-  margin-bottom: 24px;
-}
-
-.hero p {
-  max-width: 640px;
-  font-size: 14px;
-  line-height: 1.8;
-  opacity: 0.9;
-}
-/* CTA 按鈕 */
-.hero button {
-  margin-top: 30px;
-  padding: 14px 36px;
-  background-color: #8fa38a;
-  border: none;
-  cursor: pointer;
-  
-}
-
-/* ===== 基礎按鍵樣式 ===== */
-.btn-primary {
-  position: relative; /* 讓內部動畫定位用 */
-  padding: 14px 36px;
-  background-color: #8fa38a; /* 主按鍵色 */
-  color: #1e1f26;
-  border: none;
-  font-size: 14px;
-  letter-spacing: 1px; /* 文藝感 */
-  cursor: pointer;
-  overflow: hidden; /* 隱藏動畫溢出 */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-
-/* ===== 滑鼠移上：微上浮 ===== */
-.btn-primary:hover {
-  transform: translateY(-3px); /* 輕微上移 */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25); /* 柔和陰影 */
-}
-
-
-/* ===== 按鍵內部光影 ===== */
-.btn-primary::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255,255,255,0.15); /* 微光 */
-  transition: left 0.6s ease;
-}
-
-/* Hover 時光影滑過 */
-.btn-primary:hover::after {
-  left: 100%;
-}
-
-
-/* ===== About 區 ===== */
-.about-content {
-  max-width: 1200px;
-  margin: auto;
-}
-
-/* 圖＋文橫排 */
-.profile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 48px;
-}
-
-/* 圖片 */
-.profile-img {
-  width: 260px;
-  max-width: 100%;
-  height: auto;
-  flex-shrink: 0;
-}
-
-/* 文字區 */
-.profile-text {
-  max-width: 420px;
-  writing-mode: horizontal-tb; /* 強制橫排 */
-}
-
-.profile-name {
-  font-size: 20px;
-  margin-bottom: 12px;
-}
-
-.profile-desc {
-  line-height: 1.8;
-  margin-bottom: 20px;
-}
-
-/* 按鈕 */
-.btn-outline {
-  padding: 10px 24px;
-  background: transparent;
-  border: 1px solid #eaeaea;
-  color: #eaeaea;
-  cursor: pointer;
-}
-
-.btn-primary {
-  display: inline-block;
-  padding: 12px 28px;
-  background-color: #3b6e68;
-  color: #d1d1d1;
-  text-decoration: none; /* 去底線 */
-  border-radius: 999px;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.btn-primary:hover {
-  background-color: #d6c6b3;
-}
-
-/* 手機版：直排 */
-@media (max-width: 768px) {
-  .profile {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-/* ===== Services 卡片 ===== */
-.character-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 120px;
-  padding: 120px 0;
-}
-
-
-.card {
-  position: relative;
-  width: 360px;
-  background-color: #eee3d5;
-
-  padding-top: 200px;   
-  padding-bottom: 24px;
-
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.card-img {
-  position: absolute;
-  top: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-height: 300px;
-  z-index: 2;
-}
-
-
-.card-text {
-  margin-top: 12px;
-}
-
-.card-text p {
-  font-size: 14px;
-  color: #444;
-  line-height: 1.6;
-}
-
-
-.card-text h3 {
-  margin: 0;
-  font-size: 25px;
-  color: #444;
-}
-
-
-
-
-
-/* ===== Footer ===== */
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: flex-start;
-}
-
-.footer-contact {
-  display: flex;
-  flex-direction: column;   /* 上 → 下 */
-  gap: 8px;                 /* 行距 */
-  writing-mode: horizontal-tb; /* 強制橫式 */
-}
-
-.footer-contact p {
-  margin: 0;
-  white-space: normal;      /* 不強制單行 */
-  word-break: break-word;   /* Email 不爆版 */
-}
-
-/* ===== 簡單進場動畫 ===== */
-.fade-in {
-  animation: fade 1s ease forwards;
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 寬高計算方式一致 */
-* {
-  box-sizing: border-box;
-}
-
-/*  頁面基本設定 */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
-/*自動依螢幕縮放 */
 .container {
-  max-width: 1200px;   /* 桌機最大寬 */
-  width: 100%;         /* 手機滿版 */
+  max-width: 1200px; /* 桌機最大寬 */
+  width: 100%;       /* 手機滿版 */
   margin: auto;
   padding: 16px;
 }
 
-
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
-.main-content {
-  display: flex;
-  gap: 16px;
-}
-
-/* 手機自動變直排 */
-@media (max-width: 768px) {
-  .main-content {
-    flex-direction: column;
-  }
-}
-
-
+/* =========================================
+   2. 導覽列 (Navbar)
+   ========================================= */
 .navbar {
   display: flex;
-  align-items: center;        /* 垂直置中 */
+  align-items: center;
   justify-content: space-between;
   padding: 20px 60px;
-  background-color: #f0e8dd;
+  background-color: #f0e8dd; /* 淺色導覽背景 */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-/* Logo */
 .logo-img {
   max-height: 50px;
   width: auto;
@@ -389,7 +51,6 @@ img {
   width: auto;
 }
 
-/* 右側選單 */
 .nav-links {
   display: flex;
   gap: 20px;
@@ -399,48 +60,196 @@ img {
   text-decoration: none;
   color: #1e1f26;
   font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.3s;
 }
 
-
-/* 頁面進場動畫 */
-.page-enter {
-  animation: pageFadeIn 1s ease forwards;
+.nav-links a:hover {
+  opacity: 0.6;
 }
 
-/* 進場關鍵影格 */
-@keyframes pageFadeIn {
-  from {
-    opacity: 0;              /* 一開始透明 */
-    transform: translateY(20px); /* 微微在下面 */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* =========================================
+   3. 區塊通用設定 (Section Settings)
+   ========================================= */
+section {
+  padding: 100px 60px;
+  position: relative;
 }
 
+/* 區塊背景色定義 */
+.hero     { background-color: #2a2c36; }
+.problem  { background-color: #3a3d4a; text-align: center; }
+.about    { background-color: #2a2c36; }
+.services { background-color: #3f3a34; }
+.social   { background-color: #2a2c36; text-align: center; }
+.extras   { background-color: #3a3d4a; text-align: center; }
 
-/* ===== 區塊初始狀態 ===== */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 1s ease;
+footer {
+  background-color: #1a1b20;
+  padding: 60px;
 }
 
-/* 顯示後狀態 */
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
+/* =========================================
+   4. Hero 視覺大圖區
+   ========================================= */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  overflow: hidden;
 }
 
+/* 背景遮罩層 */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 31, 38, 0.6);
+  z-index: 1;
+}
 
-/* 回饋基礎按鈕設定 */
-.btn-outline, .btn-primary {
+.hero-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  transition: opacity 1.5s ease;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 64px);
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.hero p {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* =========================================
+   5. 個人介紹與角色卡片 (Layouts)
+   ========================================= */
+.about-content {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+
+.profile-img {
+  width: 260px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.profile-text {
+  max-width: 420px;
+}
+
+.profile-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+/* 角色展示區 */
+.character-section {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 80px;
+  padding: 120px 0;
+}
+
+.card {
+  position: relative;
+  width: 360px;
+  background-color: #eee3d5;
+  padding: 200px 24px 24px 24px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.card-img {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-height: 280px;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-img {
+  transform: translateX(-50%) translateY(-10px);
+}
+
+.card-text h3 {
+  font-size: 25px;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.card-text p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* =========================================
+   6. 按鈕與 UI 組件 (Buttons & Forms)
+   ========================================= */
+/* 通用按鈕基礎 */
+.btn-primary, .btn-outline {
+  display: inline-block;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: inherit;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border-radius: 999px;
+  text-align: center;
 }
 
+/* 實心按鈕 */
+.btn-primary {
+  padding: 12px 36px;
+  background-color: #3b6e68;
+  color: #ffffff !important;
+  border: none;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background-color: #d6c6b3;
+  color: #3b6e68 !important;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* 外框按鈕 */
 .btn-outline {
   padding: 10px 24px;
   background: transparent;
@@ -453,44 +262,95 @@ img {
   color: #3b6e68;
 }
 
-.btn-primary {
-  display: inline-block;
-  padding: 12px 28px;
-  background-color: #3b6e68;
-  color: #ffffff; /* 提升白色對比 */
-  text-decoration: none;
-  border-radius: 999px;
-  border: 1px solid transparent; /* 保持與 outline 高度一致 */
-  font-weight: 600;
-}
-
-.btn-primary:hover {
-  background-color: #d6c6b3;
-  color: #3b6e68; /* 懸停時文字變深 */
-}
-
+/* 表單設定 */
 .form-group {
   margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 
 input, textarea {
   padding: 12px;
   border: 1px solid #eaeaea;
   border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
   transition: 0.3s;
 }
 
-/* 格式錯誤時的樣式 */
 input.invalid {
   border-color: #e74c3c;
-  background-color: #fff6f6;
+  background-color: rgba(231, 76, 60, 0.1);
 }
 
-/* 按鈕禁用樣式 */
-.btn-submit:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-  opacity: 0.7;
+/* =========================================
+   7. 捲動進場偵測 (Reveal Animations)
+   ========================================= */
+.reveal {
+  opacity: 0.1; /* 未滑到時近乎透明 */
+  transform: translateY(30px);
+  filter: grayscale(80%); /* 未滑到時呈現灰色 */
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+  filter: grayscale(0%);
+}
+
+.page-enter {
+  animation: pageFadeIn 1s ease forwards;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   8. 響應式排版 (Responsive)
+   ========================================= */
+@media (max-width: 768px) {
+  section {
+    padding: 60px 20px;
+  }
+
+  .navbar {
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-links {
+    gap: 10px;
+  }
+
+  .nav-links a {
+    margin-left: 0;
+    font-size: 13px;
+  }
+
+  .profile {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .character-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 30px;
+  }
 }
